@@ -1,6 +1,8 @@
+import { LinkText } from "./styles";
+import { FormTitle } from "../../components/Forms/Container/FormTitle";
 import { ReactNode } from "react";
+import { FormContent } from "../../components/Forms/Container/FormContent";
 import { CustomButton } from "../../components/CustomButton";
-import { FormContent, LinkText, Title } from "./styles";
 
 interface IsignInContent {
   children: ReactNode;
@@ -10,11 +12,11 @@ interface IsignInContent {
 export function SignInContent({ children, onPress }: IsignInContent) {
   return (
     <FormContent>
-      <Title>Login</Title>
+      <FormTitle>Login</FormTitle>
 
       {children}
 
-      <LinkText registerSchema>Não tem uma conta? </LinkText>
+      <LinkText registerSchema>Não tem uma conta?</LinkText>
 
       <CustomButton registerSchema title="Cadastre-se" onPress={onPress} />
     </FormContent>

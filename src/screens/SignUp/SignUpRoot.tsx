@@ -7,11 +7,11 @@ import {
 import { ReactNode } from "react";
 import { Container } from "../../components/Forms/Container/Container";
 
-interface IsignInRoot {
+interface IsignUpProps {
   children: ReactNode;
 }
 
-export const SignInRoot = ({ children }: IsignInRoot) => {
+export function SignUpRoot({ children }: IsignUpProps) {
   return (
     <Container>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -21,4 +21,4 @@ export const SignInRoot = ({ children }: IsignInRoot) => {
       </TouchableWithoutFeedback>
     </Container>
   );
-};
+}

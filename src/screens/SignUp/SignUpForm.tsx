@@ -1,27 +1,25 @@
-import { ControlledInput } from "../../components/Forms/ControlledInput";
-
 import { Form } from "../../components/Forms/Container/Form";
-import { CustomButton } from "../../components/CustomButton";
-
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signInSchema } from "../../schemas";
+import { CustomButton } from "../../components/CustomButton";
+import { signUpSchema } from "../../schemas";
+import { ControlledInput } from "../../components/Forms/ControlledInput";
 
-type SignInData = {
+type SignUpData = {
   email: string;
   password: string;
 };
 
-export function SignInForm() {
+export function SignUpForm() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignInData>({
-    resolver: yupResolver(signInSchema),
+  } = useForm<SignUpData>({
+    resolver: yupResolver(signUpSchema),
   });
 
-  const handleSignIn = (data: SignInData) => {
+  const handleSignIn = (data: SignUpData) => {
     console.log(data);
   };
 
