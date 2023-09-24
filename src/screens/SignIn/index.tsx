@@ -1,6 +1,5 @@
-import { LayoutAuthentication } from "../../components/Layout/Authentication";
-import { Logo } from "../../components/Logo";
 import { SignInController } from "./SignInController";
+import { LayoutAuthentication } from "../../components/Layout/Authentication";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 // Tipo da propriedade de navegação

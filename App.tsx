@@ -5,10 +5,10 @@ import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   return (
-    <Providers>
-      <NavigationContainer>
+    <NavigationContainer>
+      <Providers>
         <Routes />
-      </NavigationContainer>
-    </Providers>
+      </Providers>
+    </NavigationContainer>
   );
 }

@@ -6,23 +6,31 @@ import { CustomButton } from "../../components/CustomButton";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signInSchema } from "../../schemas";
+import { IsignInProps } from "../../@types/auth";
+import { useAuth } from "../../contexts/Auth";
 
-type SignInData = {
-  email: string;
-  password: string;
-};
-
-export function SignInForm() {
+const useSignInForm = () => {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignInData>({
+  } = useForm<IsignInProps>({
     resolver: yupResolver(signInSchema),
   });
 
-  const handleSignIn = (data: SignInData) => {
-    console.log(data);
+  return {
+    control,
+    handleSubmit,
+    errors,
+  };
+};
+
+export function SignInForm() {
+  const { signIn } = useAuth();
+  const { control, errors, handleSubmit } = useSignInForm();
+
+  const handleSignIn = (data: IsignInProps) => {
+    signIn(data);
   };
 
   return (
