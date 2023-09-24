@@ -1,14 +1,14 @@
-import { Logo } from "../../components/Logo";
 import { SignUpController } from "./SignUpController";
+import { LayoutAuthentication } from "../../components/Layout/Authentication";
 
 export function SignUp() {
   return (
     <SignUpController.Root>
-      <Logo />
-
-      <SignUpController.Content>
-        <SignUpController.Form />
-      </SignUpController.Content>
+      <LayoutAuthentication>
+        <SignUpController.Content>
+          <SignUpController.Form />
+        </SignUpController.Content>
+      </LayoutAuthentication>
     </SignUpController.Root>
   );
 }

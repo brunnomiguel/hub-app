@@ -1,3 +1,4 @@
+import { LayoutAuthentication } from "../../components/Layout/Authentication";
 import { Logo } from "../../components/Logo";
 import { SignInController } from "./SignInController";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -19,11 +20,11 @@ interface SignInProps {
 export function SignIn({ navigation }: SignInProps) {
   return (
     <SignInController.Root>
-      <Logo />
-
-      <SignInController.Content onPress={() => navigation.navigate("signup")}>
-        <SignInController.Form />
-      </SignInController.Content>
+      <LayoutAuthentication>
+        <SignInController.Content onPress={() => navigation.navigate("signup")}>
+          <SignInController.Form />
+        </SignInController.Content>
+      </LayoutAuthentication>
     </SignInController.Root>
   );
 }
