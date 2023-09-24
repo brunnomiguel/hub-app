@@ -1,9 +1,14 @@
-import { Text, View } from "react-native";
+import { useAuth } from "../../contexts/Auth";
+import { HeaderContainer } from "./styles";
+import { HeaderDashboard } from "./Dashboard";
+import { HeaderAuthentication } from "./Authentication";
 
 export function Header() {
+  const { signed } = useAuth();
+
   return (
-    <View>
-      <Text>Header</Text>
-    </View>
+    <HeaderContainer>
+      {signed ? <HeaderDashboard /> : <HeaderAuthentication />}
+    </HeaderContainer>
   );
 }

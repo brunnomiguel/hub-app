@@ -54,7 +54,7 @@ export const InputText = styled(TextInput)`
 
   font-size: 18px;
 
-  padding: 0 16px;
+  padding: 0 10px;
   margin-left: 2px;
 
   border-radius: 0 8px 8px 0;
