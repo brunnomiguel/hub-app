@@ -1,19 +1,18 @@
 import { Form } from "../../components/Forms/Container/Form";
+import { useAuth } from "../../contexts/Auth";
 import { useForm } from "react-hook-form";
 import { Feather } from "@expo/vector-icons";
+import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CustomButton } from "../../components/CustomButton";
 import { signUpSchema } from "../../schemas";
+import { IsignUpProps } from "../../@types/auth";
 import { ControlledInput } from "../../components/Forms/ControlledInput";
-import { useState } from "react";
 import { BoxIcon, PasswordViewController } from "./styles";
 
-type SignUpData = {
-  name: string;
-  email: string;
-  password: string;
-  confirm_password: string;
-};
+interface IsignUpFormProps {
+  navigateToSignIn: () => void;
+}
 
 const useSignUpForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -24,7 +23,7 @@ const useSignUpForm = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignUpData>({
+  } = useForm<IsignUpProps>({
     resolver: yupResolver(signUpSchema),
   });
 
@@ -39,7 +38,7 @@ const useSignUpForm = () => {
   };
 };
 
-export function SignUpForm() {
+export function SignUpForm({ navigateToSignIn }: IsignUpFormProps) {
   const {
     control,
     errors,
@@ -50,8 +49,12 @@ export function SignUpForm() {
     setShowConfirmPassword,
   } = useSignUpForm();
 
-  const handleSignIn = (data: SignUpData) => {
-    console.log(data);
+  const { signUp } = useAuth();
+
+  const handleSignIn = (data: IsignUpProps) => {
+    signUp(data).then((_) => {
+      navigateToSignIn();
+    });
   };
 
   return (
@@ -80,15 +83,15 @@ export function SignUpForm() {
           icon="lock"
           control={control}
           placeholder="Senha"
-          secureTextEntry={showPassword}
+          secureTextEntry={!showPassword}
           error={errors.password}
         />
 
         <BoxIcon onPress={() => setShowPassword(!showPassword)}>
           {showPassword ? (
-            <Feather name="eye" color="#fff" size={24} />
-          ) : (
             <Feather name="eye-off" color="#fff" size={24} />
+          ) : (
+            <Feather name="eye" color="#fff" size={24} />
           )}
         </BoxIcon>
       </PasswordViewController>
@@ -99,15 +102,15 @@ export function SignUpForm() {
           icon="lock"
           control={control}
           placeholder="Confirmação de senha"
-          secureTextEntry={showConfirmPassword}
+          secureTextEntry={!showConfirmPassword}
           error={errors.confirm_password}
         />
 
         <BoxIcon onPress={() => setShowConfirmPassword(!showConfirmPassword)}>
           {showConfirmPassword ? (
-            <Feather name="eye" color="#fff" size={24} />
-          ) : (
             <Feather name="eye-off" color="#fff" size={24} />
+          ) : (
+            <Feather name="eye" color="#fff" size={24} />
           )}
         </BoxIcon>
       </PasswordViewController>
