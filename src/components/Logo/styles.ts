@@ -6,7 +6,5 @@ export const StyledLogo = styled.Text`
 
   text-align: center;
 
-  margin-bottom: 40px;
-
   color: #fe5b52;
 `;

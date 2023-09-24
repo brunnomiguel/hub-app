@@ -12,6 +12,7 @@ export const signInSchema = yup.object({
 });
 
 export const signUpSchema = yup.object({
+  name: yup.string().required("Informe o seu nome"),
   email: yup
     .string()
     .required("Informe o seu e-mail.")
@@ -20,4 +21,8 @@ export const signUpSchema = yup.object({
     .string()
     .min(6, "Senha precisa conter o mínimo de 6 dígitos")
     .required("Digite a sua senha."),
+  confirm_password: yup
+    .string()
+    .required("Confirm password required")
+    .oneOf([yup.ref("password")], "Senhas não conferem"),
 });
